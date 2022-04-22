@@ -1,27 +1,35 @@
 class Location {
-  String? _heading;
-  String? _latitude;
-  String? _longitude;
+  double? _heading;
+  double? _latitude;
+  double? _longitude;
 
   Location(_heading, _latitude, _longitude);
 
   // method that assign values to respective instance variables
   Location.fromJson(Map<String, dynamic> json) {
-    _heading = json['heading'];
-    _latitude = json['latitude'];
-    _longitude = json['longitude'];
+    _heading = double.parse(json['heading']);
+
+    _latitude = json['latitude'] is String
+        ? double.parse(json['latitude'])
+        : json['latitude'];
+    _longitude = json['longitude'] is String
+        ? double.parse(json['longitude'])
+        : json['longitude'];
+
+    // _latitude = json['latitude'].toDouble();
+    // _longitude = json['longitude'].toDouble();
   }
 
   // accessor methods
-  String? get getHeading {
+  double? get getHeading {
     return _heading;
   }
 
-  String? get getLatitude {
+  double? get getLatitude {
     return _latitude;
   }
 
-  String? get getLongitude {
+  double? get getLongitude {
     return _longitude;
   }
 }
