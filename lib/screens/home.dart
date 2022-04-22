@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart' as latLg;
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +52,7 @@ class Home extends StatelessWidget {
               Marker(
                 width: 80.0,
                 height: 80.0,
-                point: latLg.LatLng(51.5, -0.09),
+                point: latLg.LatLng(-33.943336828229064, 18.468253984264145),
                 builder: (ctx) => const FlutterLogo(),
               ),
             ],
