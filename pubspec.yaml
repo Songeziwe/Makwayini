@@ -24,3 +24,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/messages.json
+    - assets/vehicleCoordinates.json
+    - assets/images/
