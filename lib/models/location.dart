@@ -1,5 +1,5 @@
 class Location {
-  double? _heading;
+  double _heading = 0;
   double? _latitude;
   double? _longitude;
 
@@ -21,7 +21,7 @@ class Location {
   }
 
   // accessor methods
-  double? get getHeading {
+  double get getHeading {
     return _heading;
   }
 

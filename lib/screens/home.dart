@@ -43,9 +43,9 @@ class _HomeState extends State<Home> {
         width: 80.0,
         height: 80.0,
         point: latLg.LatLng(location.getLatitude, location.getLongitude),
-        builder: (ctx) => const RotationTransition(
-          turns: AlwaysStoppedAnimation(31 / 360),
-          child: Image(
+        builder: (ctx) => Transform.rotate(
+          angle: location.getHeading,
+          child: const Image(
             image: AssetImage('assets/images/ic_new_white_taxi.png'),
           ),
         ),
@@ -84,8 +84,8 @@ class _HomeState extends State<Home> {
             var items = snapshot.data as List<Marker>;
             return FlutterMap(
               options: MapOptions(
-                center: latLg.LatLng(-34.01001731299437, 18.673952204673462),
-                zoom: 13.0,
+                center: latLg.LatLng(-32.24387944351078, 22.397537952200274),
+                zoom: 5.0,
               ),
               layers: [
                 TileLayerOptions(
@@ -110,38 +110,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-// [
-// Marker(
-// width: 80.0,
-// height: 80.0,
-// point: latLg.LatLng(-34.01001731299437, 18.673952204673462),
-// builder: (ctx) => const RotationTransition(
-// turns: AlwaysStoppedAnimation(31 / 360),
-// child: Image(
-// image: AssetImage('assets/images/ic_new_white_taxi.png'),
-// ),
-// ),
-// ),
-// ],
-
-// FlutterMap(
-// options: MapOptions(
-// center: latLg.LatLng(-34.01001731299437, 18.673952204673462),
-// zoom: 13.0,
-// ),
-// layers: [
-// TileLayerOptions(
-// urlTemplate:
-// "https://api.mapbox.com/styles/v1/songeziwe/cl27zqw74000214m1rihq4fao/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29uZ2V6aXdlIiwiYSI6ImNsMjdzNzZ0ajAwaHczY284YjB6MWxxeWcifQ.rKWPJBBl-xogFkBMo_GavQ",
-// additionalOptions: {
-// 'accessToken':
-// 'pk.eyJ1Ijoic29uZ2V6aXdlIiwiYSI6ImNsMjdzNzZ0ajAwaHczY284YjB6MWxxeWcifQ.rKWPJBBl-xogFkBMo_GavQ',
-// 'id': 'mapbox.mapbox-streets-v8',
-// },
-// ),
-// MarkerLayerOptions(
-// markers: markers,
-// ),
-// ],
-// ),
