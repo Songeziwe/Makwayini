@@ -58,6 +58,10 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pinkAccent,
+        leading: const Icon(
+          Icons.map,
+          color: Colors.black,
+        ),
         title: const Text('Map'),
         actions: [
           TextButton.icon(

@@ -7,7 +7,7 @@ void main() {
   runApp(const MyApp());
 }
 
-// root component
+// root widget
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: '/splash',
       routes: {
         '/': (context) => const Home(),
         '/messages': (context) => const Messages(),
