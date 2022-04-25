@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:quicloc/constants/theme.dart';
 import 'package:quicloc/screens/home.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Splash extends StatefulWidget {
+  static const String splashScreenPath = '/';
+
   const Splash({Key? key}) : super(key: key);
 
   @override
@@ -52,7 +55,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     Timer(const Duration(milliseconds: 3500), () {
       controller!.dispose();
       showHome = true;
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushNamed(context, Home.homeScreenPath);
     });
   }
 
@@ -61,10 +64,14 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     return showHome
         ? const Home()
         : Scaffold(
-            backgroundColor: Colors.pinkAccent,
+            backgroundColor: kPrimary,
             body: Center(
-              child: SvgPicture.asset('assets/images/quickloc8.svg',
-                  width: size, semanticsLabel: 'Quicloc Logo'),
+              child: SvgPicture.asset(
+                'assets/images/quickloc8.svg',
+                color: kAccent,
+                width: size,
+                semanticsLabel: 'Quicloc Logo',
+              ),
             ),
           );
   }

@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart' as latLg;
 import 'package:flutter/services.dart' as root_bundle;
+import 'package:quicloc/screens/messages.dart';
 import 'dart:convert';
 import '../models/location.dart';
 import 'package:quicloc/constants/theme.dart';
 
 class Home extends StatefulWidget {
+  static const String homeScreenPath = '/homeScreen';
+
   const Home({Key? key}) : super(key: key);
 
   @override
@@ -30,7 +33,7 @@ class _HomeState extends State<Home> {
         .loadString('assets/vehicleCoordinates.json');
     // decode json data as list
     final list = json.decode(jsondata) as List<dynamic>;
-    // map json and initialize using Messages model
+    // file_io json and initialize using Messages model
     return list.map((item) {
       return Location.fromJson(item);
     }).toList();
@@ -74,7 +77,7 @@ class _HomeState extends State<Home> {
               color: kSecondary,
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/messages');
+              Navigator.pushNamed(context, Messages.messagesScreenPath);
             },
             label: const Text(
               'messages',
@@ -95,7 +98,7 @@ class _HomeState extends State<Home> {
             var items = snapshot.data as List<Marker>;
             return FlutterMap(
               options: MapOptions(
-                center: latLg.LatLng(-32.24387944351078, 22.397537952200274),
+                center: latLg.LatLng(-29.61889314245627, 22.640473792501435),
                 zoom: 5.0,
               ),
               layers: [
