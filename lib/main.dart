@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quicloc/screens/splash.dart';
 import 'package:quicloc/screens/home.dart';
 import 'package:quicloc/screens/messages.dart';
+import 'package:quicloc/constants/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,14 +17,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Quickloc Mobile Application',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      initialRoute: '/splash',
+      initialRoute: '/',
       routes: {
-        '/': (context) => const Home(),
+        '/': (context) => const Splash(),
+        '/home': (context) => const Home(),
         '/messages': (context) => const Messages(),
-        '/splash': (context) => const Splash(),
       },
     );
   }

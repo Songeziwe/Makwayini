@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:quicloc/constants/theme.dart';
 import 'package:quicloc/models/message.dart';
 import 'package:flutter/services.dart' as root_bundle;
+import 'package:quicloc/widgets/custom_icon.dart';
 
 class Messages extends StatefulWidget {
   const Messages({Key? key}) : super(key: key);
@@ -44,16 +46,21 @@ class _MessagesState extends State<Messages> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink,
-        elevation: 0,
-        // leading: const Icon(Icons.menu),
-        title: const Text('Messages'),
+        backgroundColor: kPrimary,
+        title: const Text(
+          'Messages',
+          style: kTextStyle,
+        ),
       ),
       body: FutureBuilder(
         future: list,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return Center(child: Text('${snapshot.error}'));
+            return Center(
+                child: Text(
+              '${snapshot.error}',
+              style: kTextStyle,
+            ));
           }
           if (snapshot.hasData) {
             var items = snapshot.data as List<Message>;
@@ -85,9 +92,7 @@ class _MessagesState extends State<Messages> {
                     children: [
                       Text(items[index].getDisplay.toString()),
                       const SizedBox(height: 8.0),
-                      const Icon(
-                        Icons.star_outline_outlined,
-                      ),
+                      const CustomIcon(),
                     ],
                   ),
                 );

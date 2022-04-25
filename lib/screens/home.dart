@@ -4,6 +4,7 @@ import 'package:latlong/latlong.dart' as latLg;
 import 'package:flutter/services.dart' as root_bundle;
 import 'dart:convert';
 import '../models/location.dart';
+import 'package:quicloc/constants/theme.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -57,24 +58,27 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: kPrimary,
         leading: const Icon(
           Icons.map,
-          color: Colors.black,
+          color: kSecondary,
         ),
-        title: const Text('Map'),
+        title: const Text(
+          'Map',
+          style: kTextStyle,
+        ),
         actions: [
           TextButton.icon(
             icon: const Icon(
               Icons.message,
-              color: Colors.black,
+              color: kSecondary,
             ),
             onPressed: () {
               Navigator.pushNamed(context, '/messages');
             },
             label: const Text(
               'messages',
-              style: TextStyle(color: Colors.black),
+              style: kTextStyle,
             ),
           ),
         ],
@@ -83,7 +87,10 @@ class _HomeState extends State<Home> {
         future: markers,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return const Text("ERROR");
+            return Text(
+              '${snapshot.error}',
+              style: kErrorStyle,
+            );
           } else if (snapshot.hasData) {
             var items = snapshot.data as List<Marker>;
             return FlutterMap(
@@ -107,7 +114,7 @@ class _HomeState extends State<Home> {
               ],
             );
           } else {
-            return const Text("HELLO, WORLD!");
+            return const Text("Loading...");
           }
         },
       ),

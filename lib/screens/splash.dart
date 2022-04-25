@@ -52,7 +52,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     Timer(const Duration(milliseconds: 3500), () {
       controller!.dispose();
       showHome = true;
-      Navigator.pushNamed(context, '/');
+      Navigator.pushNamed(context, '/home');
     });
   }
 
