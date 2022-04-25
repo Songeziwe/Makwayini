@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart' as latLg;
-import 'package:flutter/services.dart' as root_bundle;
 import 'package:quicloc/screens/messages.dart';
-import 'dart:convert';
+import 'package:quicloc/services/file_io.dart';
 import '../models/location.dart';
 import 'package:quicloc/constants/theme.dart';
+import 'package:quicloc/widgets/flutter_map_widget.dart';
 
 class Home extends StatefulWidget {
   static const String homeScreenPath = '/homeScreen';
@@ -23,20 +23,8 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    locations = readCoordinates();
+    locations = FileIO.readCoordinates();
     markers = createMarkers(locations);
-  }
-
-  Future<List<Location>> readCoordinates() async {
-    // read json file
-    final jsondata = await root_bundle.rootBundle
-        .loadString('assets/vehicleCoordinates.json');
-    // decode json data as list
-    final list = json.decode(jsondata) as List<dynamic>;
-    // file_io json and initialize using Messages model
-    return list.map((item) {
-      return Location.fromJson(item);
-    }).toList();
   }
 
   Future<List<Marker>> createMarkers(Future<List<Location>> locations) async {
@@ -96,26 +84,7 @@ class _HomeState extends State<Home> {
             );
           } else if (snapshot.hasData) {
             var items = snapshot.data as List<Marker>;
-            return FlutterMap(
-              options: MapOptions(
-                center: latLg.LatLng(-29.61889314245627, 22.640473792501435),
-                zoom: 5.0,
-              ),
-              layers: [
-                TileLayerOptions(
-                  urlTemplate:
-                      "https://api.mapbox.com/styles/v1/songeziwe/cl27zqw74000214m1rihq4fao/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29uZ2V6aXdlIiwiYSI6ImNsMjdzNzZ0ajAwaHczY284YjB6MWxxeWcifQ.rKWPJBBl-xogFkBMo_GavQ",
-                  additionalOptions: {
-                    'accessToken':
-                        'pk.eyJ1Ijoic29uZ2V6aXdlIiwiYSI6ImNsMjdzNzZ0ajAwaHczY284YjB6MWxxeWcifQ.rKWPJBBl-xogFkBMo_GavQ',
-                    'id': 'mapbox.mapbox-streets-v8',
-                  },
-                ),
-                MarkerLayerOptions(
-                  markers: items,
-                ),
-              ],
-            );
+            return FlutterMapWidget(items: items);
           } else {
             return const Text("Loading...");
           }
