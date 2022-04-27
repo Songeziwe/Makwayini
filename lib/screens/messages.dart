@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quicloc/constants/theme.dart';
 import 'package:quicloc/models/message.dart';
 import 'package:quicloc/services/file_io.dart';
-import 'package:quicloc/widgets/message_tile.dart';
+import 'package:quicloc/shared/message_tile.dart';
 
 class Messages extends StatefulWidget {
   static const String messagesScreenPath = '/messagesScreen';

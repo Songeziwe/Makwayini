@@ -5,7 +5,7 @@ import 'package:quicloc/screens/messages.dart';
 import 'package:quicloc/services/file_io.dart';
 import '../models/location.dart';
 import 'package:quicloc/constants/theme.dart';
-import 'package:quicloc/widgets/flutter_map_widget.dart';
+import 'package:quicloc/shared/flutter_map_widget.dart';
 
 class Home extends StatefulWidget {
   static const String homeScreenPath = '/homeScreen';

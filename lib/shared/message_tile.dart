@@ -1,8 +1,7 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:quicloc/models/message.dart';
-import 'package:quicloc/widgets/custom_icon.dart';
+import 'package:quicloc/shared/custom_icon.dart';
 
 class MessageTile extends StatelessWidget {
   final List<Message>? items;
